@@ -4,7 +4,7 @@ import './booking.css';
 
 const bookedSlots = ['18:30', '20:30'];
 
-function BookingPage({ availableTimes, dispatch }) {
+function BookingPage({ availableTimes, dispatch, submitForm }) {
   return (
     <main id="main-content" role="main" className="booking-page" aria-labelledby="booking-page-title">
       <section className="booking-hero">
@@ -20,7 +20,7 @@ function BookingPage({ availableTimes, dispatch }) {
 
       <section className="booking-section" aria-label="Reservation details">
         <div className="container booking-section__content">
-          <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
+          <BookingForm availableTimes={availableTimes} dispatch={dispatch} submitForm={submitForm} />
 
           <div className="booking-section__lists">
             <BookingSlotsList title="Available Slots" status="available" times={availableTimes} />
