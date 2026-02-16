@@ -2,7 +2,7 @@ import { useReducer } from 'react';
 import Hero from './Hero';
 import Specials from './Specials';
 import About from './About';
-import BookingPage from './BookingPage';
+import BookingPage from './booking/BookingPage';
 
 const defaultTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
 

@@ -1,5 +1,6 @@
 import BookingForm from './BookingForm';
 import BookingSlotsList from './BookingSlotsList';
+import './booking.css';
 
 const bookedSlots = ['18:30', '20:30'];
 
