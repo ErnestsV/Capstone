@@ -1,6 +1,15 @@
+import { Link } from 'react-router-dom';
 import logo from '../assets/Logo.svg';
 
-const navLinks = ['Home', 'About', 'Menu', 'Reservations', 'Order Online', 'Login'];
+const navLinks = [
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/#about' },
+  { label: 'Menu', to: '/#specials' },
+  { label: 'Reservations', to: '/booking' },
+  { label: 'Order Online', to: '/#order-online' },
+  { label: 'Login', to: '/#login' }
+];
+
 const socialLinks = ['Instagram', 'Facebook', 'YouTube', 'X'];
 
 function Footer() {
@@ -17,8 +26,8 @@ function Footer() {
           </h2>
           <ul className="site-footer__list">
             {navLinks.map((link) => (
-              <li key={link}>
-                <a href={`#${link.toLowerCase().replace(/\s+/g, '-')}`}>{link}</a>
+              <li key={link.label}>
+                <Link to={link.to}>{link.label}</Link>
               </li>
             ))}
           </ul>

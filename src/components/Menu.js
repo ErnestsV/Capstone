@@ -1,10 +1,12 @@
+import { Link } from 'react-router-dom';
+
 const menuItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Menu', href: '#specials' },
-  { label: 'Reservations', href: '#reservations' },
-  { label: 'Order Online', href: '#order-online' },
-  { label: 'Login', href: '#login' }
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/#about' },
+  { label: 'Menu', to: '/#specials' },
+  { label: 'Reservations', to: '/booking' },
+  { label: 'Order Online', to: '/#order-online' },
+  { label: 'Login', to: '/#login' }
 ];
 
 function Menu() {
@@ -13,9 +15,9 @@ function Menu() {
       <ul className="site-nav__list">
         {menuItems.map((item) => (
           <li key={item.label} className="site-nav__item">
-            <a className="site-nav__link" href={item.href}>
+            <Link className="site-nav__link" to={item.to}>
               {item.label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
