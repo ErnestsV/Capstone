@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
-function BookingForm({ availableTimes, dispatch }) {
+function BookingForm({ availableTimes, dispatch, submitForm }) {
   const [date, setDate] = useState('');
   const [time, setTime] = useState(availableTimes[0] || '');
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState('Birthday');
-  const [confirmationMessage, setConfirmationMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     if (!availableTimes.includes(time)) {
@@ -23,12 +23,19 @@ function BookingForm({ availableTimes, dispatch }) {
     event.preventDefault();
 
     if (!time) {
-      setConfirmationMessage('No time slots are currently available.');
+      setErrorMessage('No time slots are currently available.');
       return;
     }
 
-    dispatch({ type: 'reserve', time });
-    setConfirmationMessage(`Reservation submitted for ${date} at ${time} for ${guests} guest(s) - ${occasion}.`);
+    const formData = { date, time, guests, occasion };
+    const isSubmitted = submitForm(formData);
+
+    if (!isSubmitted) {
+      setErrorMessage('Unable to submit reservation. Please try again.');
+      return;
+    }
+
+    setErrorMessage('');
   };
 
   return (
@@ -98,9 +105,9 @@ function BookingForm({ availableTimes, dispatch }) {
         Submit reservation
       </button>
 
-      {confirmationMessage ? (
-        <p className="booking-form__confirmation" role="status" aria-live="polite">
-          {confirmationMessage}
+      {errorMessage ? (
+        <p className="booking-form__error" role="status" aria-live="polite">
+          {errorMessage}
         </p>
       ) : null}
     </form>
